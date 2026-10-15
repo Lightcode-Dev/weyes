@@ -1,13 +1,17 @@
-# weyes
+# weyes 👀
 
-A Wayland-native `xeyes`, written in Rust.
+A Wayland-native `xeyes` clone written in Rust.
 
-## In order to run weyes you need to git clone the repo first
-    
+## To run weyes git clone the repo to a location of your choice! i like to use ~/git/ 
+
+If it don't exist yet make the directory using the mkdir command!
+
+    mkdir ~/git/
+    cd ~/git/ 
     git clone https://github.com/Lightcode-Dev/weyes
     cd ~/git/weyes/
     
-## Build and run weyes using cargo
+## Build and run using cargo! 😉
 
     cargo build --release
     cargo run --release
@@ -31,17 +35,17 @@ where its own window is, so each compositor needs its own *backend*:
 
 `--backend auto` (the default) picks from the environment:
 `HYPRLAND_INSTANCE_SIGNATURE` -> Hyprland, `SWAYSOCK` -> Sway,
-`XDG_CURRENT_DESKTOP` containing `KDE` -> KWin. Override with
+`XDG_CURRENT_DESKTOP` containing `KDE` -> K Win. Override with
 `--backend kwin|hyprland|manual|none`.
 
 ### Why Sway is different
 
 Sway's IPC can't report the pointer position, and its maintainers have said
-that's by design: the suggested approach is a fullscreen layer-shell surface
+that's by design: the suggested approach is a full screen layer-shell surface
 that reads `wl_pointer.enter`, which works for a one-shot like a popup menu but
 not for continuous tracking (and would disturb hover state in the windows
 below). Proposals to add a `get_cursor` query and a `cursor_movement` event
-exist upstream; if either lands, a `sway` backend is a small addition.
+exist upstream; if either lands, a `sway` back-end is a small addition.
 
 ## Source layout
 
@@ -55,7 +59,7 @@ exist upstream; if either lands, a `sway` backend is a small addition.
     src/pointer/hyprland.rs  IPC polling thread
     kwin/pointer.js        the script that runs inside KWin
 
-Adding a backend: write a type whose `start()` stores a `Feed` in the shared
+Adding a back-end: write a type whose `start()` stores a `Feed` in the shared
 slot and writes a byte to the wake-up socket; add a variant to `Backend`.
 
 ## Testing without a real compositor
